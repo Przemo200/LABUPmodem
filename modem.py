@@ -28,7 +28,7 @@ class FullModemInterface(tk.Tk):
         super().__init__()
 
         # ustawienia okna
-        self.title("Interfejs modemowy – Terminal + XMODEM")
+        self.title("Interfejs modemowy – terminal + XMODEM")
         self.geometry("1120x650")   # większe, szerokie okno
 
         # zmienne wewnętrzne
@@ -40,7 +40,7 @@ class FullModemInterface(tk.Tk):
         # budowanie interfejsu użytkownika
         self.__build_window()
 
-        # uruchom cykliczny dispatcher kolejki zdarzeń
+        # uruchomi cykliczny dispatcher kolejki zdarzeń
         self.__pump_ui_queue()
 
     # GUI
