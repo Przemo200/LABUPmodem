@@ -70,7 +70,7 @@ class FullModemInterface(tk.Tk):
 
         ttk.Label(top_frame, text="Baud:").grid(row=0, column=2, sticky="e")
         ttk.Combobox(top_frame, textvariable=self.var_baud,
-                     values=["9600","19200","38400","57600","115200"],
+                     values=["4800","9600","19200","38400","57600","115200"],
                      width=10, state="readonly").grid(row=0, column=3, padx=4)
 
         # drugi segment – bity danych, stop i parzystość
@@ -376,7 +376,7 @@ class FullModemInterface(tk.Tk):
         try:
             # plik
             with open(path, "rb") as f:
-                ok = modem.send(f, callback=prog)
+                ok = modem.send(f, callback=prog, retry=1000)
             if ok:
                 self.tasks.put(("log", "Plik wysłano poprawnie."))
             else:
@@ -408,7 +408,7 @@ class FullModemInterface(tk.Tk):
         try:
             # plik
             with open(path, "wb") as f:
-                ok = modem.recv(f, crc_mode=True)
+                ok = modem.recv(f, crc_mode=False)
 
             if ok:
                 self.tasks.put(("log", f"Odebrano poprawnie. Zapisano do: {path}"))
